@@ -1,11 +1,15 @@
 import express from "express";
-const router=express.Router()
-import { getALLUsers, getSingleUser,deleteAllUsers,deleteSingleUser, updateUser  } from "../../controllers/userController.js";
+import { deleteAllUsers, deleteSingleUser, followAndUnfollow, freezeAccount, getAllUsers, getSingleUser, getSuggestedUsers, updateUser } from "../../controllers/user.Controller.js";
+import protectRoute from "../../middlewares/protectRoute.js";
+const router = express.Router()
 
-router.get("/", getALLUsers)
-router.get("/:id", getSingleUser)
-router.delete("/delete-single/:id", deleteSingleUser)
+router.get("/", getAllUsers)
+router.get("/:id", protectRoute,getSingleUser)
 router.delete("/delete-all", deleteAllUsers)
 router.patch('/update/:id', updateUser)
+router.delete("/delete/:id", deleteSingleUser)
+router.post("/suggestions", protectRoute, getSuggestedUsers)
+router.post("/follow/:id", protectRoute, followAndUnfollow);
+router.put("/freeze", protectRoute, freezeAccount);
 
 export default router

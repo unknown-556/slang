@@ -14,10 +14,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  confirmPassword: {
-    type: String,
-    required: true
-  },
   email: {
     type: String,
     required: true,
@@ -43,7 +39,7 @@ const userSchema = mongoose.Schema({
   bio: {
     type: String,
   },
-  friends: {
+  following: {
     type:[String],
     default: []
   },
@@ -58,7 +54,7 @@ const userSchema = mongoose.Schema({
   }
 },
 {
-  timeStamps: true
+  timestamps: true
 }
 );
 
